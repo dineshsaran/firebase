@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'login.dart';
+
 class Singup extends StatefulWidget {
   const Singup({Key? key}) : super(key: key);
 
@@ -15,13 +18,15 @@ class _SingupState extends State<Singup> {
   var passCont = TextEditingController();
   var cpassCont = TextEditingController();
 
-  void Singup ()async{
+
+
+  void Singup() async {
     String email = emailCont.text.trim();
     String Password = passCont.text.trim();
     String cpassword = cpassCont.text.trim();
 
-    if(email == "" || Password == ""  || cpassword == "") {
-      showDialog(context: context, builder: (BuildContext context){
+    if (email == "" || Password == "" || cpassword == "") {
+      showDialog(context: context, builder: (BuildContext context) {
         return AlertDialog(
           title: Text('fill all the credentials !'),
         );
@@ -30,22 +35,27 @@ class _SingupState extends State<Singup> {
     }
 
     else {
-      try{
-        UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: Password);
-        if (userCredential.user!=null){
-          Navigator.pop(context);
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: Password);
+        if (userCredential.user != null) {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
         }
-      } on FirebaseAuthException catch(ex){
-        showDialog(context: context, builder: (BuildContext context){
+      } on FirebaseAuthException catch (ex) {
+        showDialog(context: context, builder: (BuildContext context) {
           return AlertDialog(
             title: Text(ex.code.toString()),
           );
         }
         );
-
       }
     }
   }
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +64,7 @@ class _SingupState extends State<Singup> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: 50,
@@ -97,10 +108,11 @@ class _SingupState extends State<Singup> {
                     hintText: 'Confirm Password'),
               ),
             ),
-            CupertinoButton(
-                child: Text('Singup'), color: Colors.yellow, onPressed: () {
-              Singup();
+            SizedBox(height: 25,),
 
+            CupertinoButton(
+                child: Text('Singup'), color: Colors.blue, onPressed: () {
+              Singup();
             })
           ],
         ),

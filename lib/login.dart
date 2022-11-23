@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ws_firebase_dinesh/HomeScreen.dart';
+
 import 'package:ws_firebase_dinesh/main.dart';
 import 'package:ws_firebase_dinesh/singup.dart';
 
@@ -89,10 +90,8 @@ class _LoginState extends State<Login> {
               child: Text('Login'), color: Colors.blue, onPressed: () {
            Login();
           }),
-          SizedBox(height: 25,),
-          InkWell(child: Text('           Creat an account !'),onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>Singup()));
-          },)
+
+
         ],
       ),
     );
