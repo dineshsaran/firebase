@@ -26,7 +26,11 @@ class _verificatinOtpState extends State<verificatinOtp> {
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
       if (userCredential.user != null) {
+<<<<<<< HEAD
         Navigator.pushReplacement(
+=======
+        Navigator.push(
+>>>>>>> origin1/master
             context, MaterialPageRoute(builder: (context) => Singup()));
       }
     } on FirebaseAuthException catch (ex) {
